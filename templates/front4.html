@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        select, input[type="number"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #2d149e;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #120230;
+        }
+
+        .category-btn {
+            background-color: #007BFF;
+            margin-bottom: 10px;
+        }
+
+        .category-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sales Prediction</h1>
+        <label for="Category">Category:</label>
+        <select id="Category" name="Category" onchange="filterSubCategory()">
+            <option value="all">All</option>
+            <option value="electronics">Electronics</option>
+            <option value="furniture">Furniture</option>
+            <option value="office">Office Supplies</option>
+        </select>
+
+        <form action="/predict" method="post">
+            <label for="Ship_Mode">Ship Mode:</label>
+            <select id="Ship_Mode" name="Ship_Mode" required>
+                <option value="0">Air</option>
+                <option value="1">Ground</option>
+            </select>
+
+            <label for="Region">Region:</label>
+            <select id="Region" name="Region" required>
+                <option value="2">South</option>
+                <option value="1">Midwest</option>
+                <option value="3">West</option>
+                <option value="0">East</option>
+            </select>
+
+            <label for="Sub_Category">Sub Category:</label>
+            <select id="Sub_Category" name="Sub_Category" required>
+                <option value="4" class="furniture">Chairs</option>
+                <option value="5" class="furniture">Desks</option>
+                <option value="20" class="office">Printers</option>
+                <option value="2" class="furniture">Bookcases</option>
+                <option value="14" class="office">Notebooks</option>
+                <option value="27" class="office">Staplers</option>
+                <option value="9" class="electronics">Headphones</option>
+                <option value="29" class="furniture">Tables</option>
+                <option value="10" class="electronics">Laptops</option>
+                <option value="24" class="electronics">Smartwatches</option>
+                <option value="13" class="electronics">Monitors</option>
+                <option value="22" class="office">Scissors</option>
+                <option value="1" class="furniture">Beds</option>
+                <option value="12" class="office">Markers</option>
+                <option value="30" class="electronics">Tablets</option>
+                <option value="16" class="office">Paper</option>
+                <option value="25" class="furniture">Sofas</option>
+                <option value="18" class="office">Pens</option>
+                <option value="8" class="office">Glue</option>
+                <option value="21" class="office">Rulers</option>
+                <option value="0" class="office">Accessories</option>
+                <option value="11" class="electronics">Lighting</option>
+                <option value="15" class="furniture">Outdoor Furniture</option>
+                <option value="31" class="office">Tape</option>
+                <option value="3" class="electronics">Cameras</option>
+                <option value="28" class="office">Storage</option>
+                <option value="7" class="office">Erasers</option>
+                <option value="26" class="electronics">Speakers</option>
+                <option value="6" class="office">Envelopes</option>
+                <option value="17" class="office">Pencils</option>
+                <option value="19" class="electronics">Phones</option>
+                <option value="23" class="electronics">Smartphones</option>
+            </select>
+
+            <label for="Quantity">Quantity:</label>
+            <input type="number" id="Quantity" name="Quantity" min="1" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="prediction">
+            <span>{{ prediction }}</span>
+    </div>
+
+    <script>
+        function filterSubCategory() {
+            const category = document.getElementById('Category').value;
+            const subCategoryOptions = document.querySelectorAll('#Sub_Category option');
+
+            subCategoryOptions.forEach(option => {
+                if (category === 'all') {
+                    option.style.display = 'block';
+                } else {
+                    option.style.display = option.classList.contains(category) ? 'block' : 'none';
+                }
+            });
+
+            document.getElementById('Sub_Category').value = ""; // Reset Sub Category selection
+        }
+    </script>
+</body>
+</html>

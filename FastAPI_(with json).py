@@ -12,14 +12,13 @@ app = FastAPI()
 class PredictionFeatures(BaseModel):
     Ship_Mode: int
     Region: int
-    Category: int
     Sub_Category: int
     Quantity: int
 
 #Global variable to store the loaded model
 model = None
 scaler = None
-poly = None
+#poly = None
 
 #Download the model
 def download_model():
@@ -28,7 +27,7 @@ def download_model():
     global poly
     model = joblib.load('model.sav')
     scaler = joblib.load('std_scaler.sav')
-    poly = joblib.load('poly_feat.sav')
+    #poly = joblib.load('poly_feat.sav')
 
 download_model()
 
@@ -45,14 +44,13 @@ async def predict(features: PredictionFeatures):
     input_data = np.array([[
         features.Ship_Mode,
         features.Region,
-        features.Category,
         features.Sub_Category,
         features.Quantity
     ]])
 
     # Preprocessing and predicting the loaded model
     input_data = scaler.transform(input_data)
-    input_data = poly.transform(input_data)
+    #input_data = poly.transform(input_data)
     prediction = model.predict(input_data)[0]
 
     # Ensure the prediction is in a JSON-serializable format

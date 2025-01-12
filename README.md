@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 ### 4. Run the FastAPI App
 ```bash
-uvicorn FlaskAPI (with frontend):app --reload
+uvicorn FlaskAPI_(with frontend):app --reload
 ```
 ### 5. Access the API
 

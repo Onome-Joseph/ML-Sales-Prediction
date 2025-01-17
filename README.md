@@ -19,7 +19,6 @@ The primary goal of this project is to develop a machine learning model capable 
 
 ```bash
 git clone https://github.com/Onome-Joseph/ML-Sales-Prediction.git
-cd Onome-Joseph
 ```
 ### 2. Create a Virtual Environment
 

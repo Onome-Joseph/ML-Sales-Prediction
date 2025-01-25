@@ -14,39 +14,25 @@ The primary goal of this project is to develop a machine learning model capable 
 - Resource Allocation: Helps allocate resources to maximize profit based on expected sales patterns.
 
 # Running the Sales Prediction FastAPI App Locally
+---
+![Screenshot of the Sales Prediction Model](https://github.com/Onome-Joseph/ML-Sales-Prediction/blob/main/Screenshot.jpeg)
 ## Steps to Run the App
 ### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Onome-Joseph/ML-Sales-Prediction.git
 ```
-### 2. Create a Virtual Environment
-
-Create a virtual environment to manage dependencies:
-
-```bash
-python -m venv venv
-```
-
-Activate the virtual environment:
-- On **Windows**:
-  ```bash
-  venv\Scripts\activate
   ```
-- On **macOS/Linux**:
-  ```bash
-  source venv/bin/activate
-  ```
-### 3. Install Dependencies
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the FastAPI App
+### 3. Run the FastAPI App
 ```bash
 uvicorn FlaskAPI_(with frontend):app --reload
 ```
-### 5. Access the API
+### 4. Access the API
 
 Once the server is running, you can access the API documentation in your web browser at:
 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
